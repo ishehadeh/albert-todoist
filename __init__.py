@@ -11,7 +11,7 @@ try:
     import todoist
     HAVE_TODOIST_LIBRARY = True
 except ImportError:
-    warning("[TODOIST] todoist library not found")
+    warning("todoist-python library not found")
 
 __iid__ = "PythonInterface/v0.1"
 __prettyname__ = "Todoist"
@@ -35,15 +35,22 @@ try:
             API = todoist.TodoistAPI(f.read())
         else:
             API = f.read()
+    if API == "":
+        API = None
 except FileNotFoundError:
-    warning("[TODOIST] todoist token not found")
+    warning("todoist api key not found")
 
 def update_todoist_api(key):
     """updated the todoist api key"""
+    global API
+
     with open(os.path.dirname(__file__)+"/todoist-key.api", "w+") as f:
         f.truncate(0)
         f.write(key)
-    API = todoist.TodoistAPI(f.read())
+    if HAVE_TODOIST_LIBRARY:
+        API = todoist.TodoistAPI(key)
+    else:
+        API = key
 
 def handleQuery(query):
     """Albert event handle for user input"""
