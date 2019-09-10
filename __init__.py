@@ -75,7 +75,7 @@ def handleQuery(query):
                                           lambda: API.quick.add(todo_str)))
             else:
                 item.addAction(FuncAction("add a todo (api)",
-                                          lambda: urlopen(Request("https://todoist.com/api/v7/quick/add",
+                                          lambda: urlopen(Request("https://todoist.com/sync/v8/quick/add",
                                                                   urlencode({'text': todo_str, 'token': API})
                                                                   .encode())).read()))
         return item
