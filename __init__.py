@@ -1,6 +1,6 @@
 """Quickly add todos to Todoist."""
 
-from albertv0 import *
+from albert import *
 from shutil import which
 import os
 from urllib.parse import urlencode
@@ -13,12 +13,28 @@ try:
 except ImportError:
     warning("todoist-python library not found")
 
-__iid__ = "PythonInterface/v0.1"
-__prettyname__ = "Todoist"
-__version__ = "1.0"
-__trigger__ = "todo: "
-__author__ = "Ian Shehadeh"
-__dependencies__ = []
+__title__ = "Todoist"
+__prettyname__ = __title__
+
+# Version Format: iid_major.iid_minor.plugin_version
+# iid_* is the version of the python interface
+__version__ = "0.4.1"
+__triggers__ = [ "todo: " ]
+__authors__ = [ "Ian Shehadeh" ]
+__doc__ = """Todoist quick add from Albert!
+
+Quick add to Todoist by typing "todo: ", followed by your todo into albert.
+
+After installing the plugin you may need to set your API key.
+You can find it on the Todoist website:
+1. Click on your profile icon in the top right
+2. Click on "Settings"
+3. In Settings, click on Integrations (at the bottom of the list)
+4. Scroll down to "API Token"
+5. Click "Copy to Clipboard"
+To set your API token type "todo: <API Token>" into Albert.
+"""
+
 
 ICON_PATH = iconLookup('todoist')
 if not ICON_PATH:
